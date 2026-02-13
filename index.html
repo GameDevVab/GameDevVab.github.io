@@ -1,48 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vaibhav Sharma | XR Command Interface</title>
+<title>Vaibhav Sharma | XR Neural Interface</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <script src="https://unpkg.com/scrollreveal"></script>
 <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-
 body{
-background:#050510;
+background:#030308;
 color:white;
 font-family:'Inter',sans-serif;
 overflow-x:hidden;
 cursor:none;
 }
 
-/* Animated Grid Background */
+/* GRID FLOOR */
 body::before{
 content:"";
 position:fixed;
+bottom:0;
+left:0;
 width:100%;
 height:100%;
 background:
-linear-gradient(#0ff2 1px, transparent 1px),
-linear-gradient(90deg,#0ff2 1px, transparent 1px);
-background-size:60px 60px;
-z-index:-1;
-animation:gridMove 20s linear infinite;
+linear-gradient(#00f0ff22 1px, transparent 1px),
+linear-gradient(90deg,#00f0ff22 1px, transparent 1px);
+background-size:80px 80px;
+animation:gridMove 15s linear infinite;
+z-index:-2;
 }
-
 @keyframes gridMove{
 0%{background-position:0 0}
-100%{background-position:60px 60px}
+100%{background-position:80px 80px}
 }
 
-/* Custom Cursor */
+/* PARTICLES */
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
+}
+
+/* CURSOR */
 .cursor{
-width:20px;height:20px;
+width:18px;height:18px;
 border:2px solid #00f0ff;
 border-radius:50%;
 position:fixed;
@@ -52,31 +60,30 @@ transition:0.1s;
 z-index:9999;
 }
 
-/* Navbar */
+/* NAV */
 nav{
 position:fixed;
 width:100%;
 padding:20px 8%;
 display:flex;
 justify-content:space-between;
-background:rgba(0,0,0,0.7);
-backdrop-filter:blur(15px);
+background:rgba(0,0,0,0.6);
+backdrop-filter:blur(10px);
 z-index:1000;
 font-family:'Orbitron',sans-serif;
 }
-
 nav a{
 color:white;
-text-decoration:none;
 margin-left:25px;
+text-decoration:none;
 transition:0.3s;
 }
-
 nav a:hover{
 color:#00f0ff;
+text-shadow:0 0 10px #00f0ff;
 }
 
-/* Hero */
+/* HERO */
 .hero{
 height:100vh;
 display:flex;
@@ -87,78 +94,78 @@ text-align:center;
 }
 
 .profile-img{
-width:200px;
-height:200px;
+width:220px;
+height:220px;
 border-radius:50%;
 object-fit:cover;
 border:4px solid #00f0ff;
 box-shadow:0 0 50px #00f0ff;
-margin-bottom:25px;
-transition:0.4s;
+transition:0.5s;
 }
-
 .profile-img:hover{
-transform:scale(1.08) rotate(2deg);
-box-shadow:0 0 80px #00f0ff;
+transform:rotate(3deg) scale(1.1);
+box-shadow:0 0 100px #00f0ff;
 }
 
 .hero h1{
 font-size:4rem;
-font-family:'Orbitron',sans-serif;
+font-family:'Orbitron';
 background:linear-gradient(90deg,#00f0ff,#ff00c8);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
+margin-top:20px;
 }
 
+/* SECTIONS */
 .section{
 padding:120px 8%;
 }
-
 .section h2{
 text-align:center;
+font-family:'Orbitron';
 font-size:2.5rem;
 margin-bottom:50px;
-font-family:'Orbitron',sans-serif;
 }
 
-/* Glass Cards */
+/* GLASS CARD */
 .card{
 background:rgba(255,255,255,0.05);
-border:1px solid rgba(0,240,255,0.3);
+border:1px solid #00f0ff33;
 border-radius:20px;
 padding:30px;
 margin-bottom:40px;
 backdrop-filter:blur(20px);
 transition:0.5s;
+transform-style:preserve-3d;
 }
-
 .card:hover{
-transform:translateY(-10px) scale(1.02);
-box-shadow:0 0 40px rgba(0,240,255,0.5);
+transform:rotateX(5deg) rotateY(5deg) scale(1.03);
+box-shadow:0 0 50px #00f0ff66;
 }
 
-/* Project */
+/* PROJECT IMAGE */
 .project-img{
 width:100%;
 border-radius:15px;
 margin-bottom:15px;
 }
 
+/* BUTTON */
 .button{
 display:inline-block;
-margin-top:15px;
-margin-right:10px;
 padding:10px 25px;
 border:1px solid #00f0ff;
 border-radius:30px;
 color:#00f0ff;
 text-decoration:none;
+margin-top:15px;
+margin-right:10px;
 transition:0.3s;
 }
-
 .button:hover{
 background:#00f0ff;
 color:black;
+box-shadow:0 0 20px #00f0ff;
 }
 
 footer{
@@ -172,6 +179,7 @@ color:#555;
 <body>
 
 <div class="cursor"></div>
+<canvas id="particles"></canvas>
 
 <nav>
 <div>Vaibhav.dev</div>
@@ -184,7 +192,7 @@ color:#555;
 
 <section class="hero">
 
-<img src="profile.jpg" alt="Vaibhav Sharma" class="profile-img">
+<img src="profile.jpg" class="profile-img">
 
 <h1>Vaibhav Sharma</h1>
 
@@ -197,26 +205,19 @@ color:#555;
 <div class="card">
 XR Developer with 2+ years experience in VR educational systems,
 Mixed Reality simulations, projector-based interactive installations,
-and team leadership. Passionate about debugging complex systems and
-solving coding challenges.
+team leadership, Blender workflows, and performance optimization.
 </div>
 </section>
 
 <section id="projects" class="section">
-<h2>PROJECT DATABASE</h2>
+<h2>PROJECT MATRIX</h2>
 
 <div class="card">
-
 <img src="assets/project1.jpg" class="project-img">
-
 <h3>VR Learning Universe</h3>
-
-<p>Immersive VR learning modules built with optimized XR architecture.</p>
-
-<a href="https://github.com/yourusername/project1" target="_blank" class="button">GitHub</a>
-
-<a href="https://youtu.be/yourvideo" target="_blank" class="button">Demo Video</a>
-
+<p>Immersive VR learning modules.</p>
+<a href="https://github.com/yourusername/project1" class="button">GitHub</a>
+<a href="https://youtu.be/yourvideo" class="button">Demo</a>
 </div>
 
 </section>
@@ -230,16 +231,11 @@ Email: yourmail@email.com <br><br>
 </div>
 </section>
 
-<footer>© 2026 Vaibhav Sharma | XR Developer</footer>
+<footer>© 2026 Vaibhav Sharma</footer>
 
 <script>
 new Typed("#typed",{
-strings:[
-"XR Developer",
-"VR Education Specialist",
-"Mixed Reality Engineer",
-"Team Lead & Debugging Expert"
-],
+strings:["XR Developer","VR Education Architect","Mixed Reality Engineer","Team Lead & Debugging Expert"],
 typeSpeed:60,
 backSpeed:30,
 loop:true
@@ -252,6 +248,27 @@ document.addEventListener("mousemove",(e)=>{
 cursor.style.left=e.clientX+"px";
 cursor.style.top=e.clientY+"px";
 });
+
+/* PARTICLES */
+const canvas=document.getElementById("particles");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+let particles=[];
+for(let i=0;i<120;i++){
+particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:2});
+}
+function draw(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+particles.forEach(p=>{
+ctx.beginPath();
+ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+ctx.fillStyle="#00f0ff";
+ctx.fill();
+});
+requestAnimationFrame(draw);
+}
+draw();
 </script>
 
 </body>
