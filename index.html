@@ -366,7 +366,64 @@ renderer.setSize(window.innerWidth,window.innerHeight);
 camera.aspect=window.innerWidth/window.innerHeight;
 camera.updateProjectionMatrix();
 });
-</script>
+  fetch("https://api.github.com/users/YOUR_GITHUB_USERNAME/repos")
+.then(res => res.json())
+.then(data => {
+    console.log(data);
+});
+  <section class="section">
+<h2>Technical Depth</h2>
+<div class="grid">
 
+<div class="glass">
+<h3>Architecture</h3>
+<p>MVC pattern, Event Driven Systems, Scalable VR Interaction Framework.</p>
+</div>
+
+<div class="glass">
+<h3>Performance</h3>
+<p>Draw call batching, Occlusion culling, LOD groups, GPU profiling.</p>
+</div>
+
+<div class="glass">
+<h3>Debugging</h3>
+<p>Memory leak tracing, Physics conflict debugging, Input system fixes.</p>
+</div>
+
+<div class="glass">
+<h3>XR Toolkits</h3>
+<p>XR Interaction Toolkit, MRTK, AR Foundation, OpenXR.</p>
+</div>
+
+</div>
+</section>
+document.querySelectorAll(".project-card").forEach(card=>{
+card.addEventListener("mousemove",(e)=>{
+const rect=card.getBoundingClientRect();
+const x=e.clientX-rect.left;
+const y=e.clientY-rect.top;
+
+const centerX=rect.width/2;
+const centerY=rect.height/2;
+
+const rotateX=-(y-centerY)/20;
+const rotateY=(x-centerX)/20;
+
+card.style.transform=`rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+});
+
+card.addEventListener("mouseleave",()=>{
+card.style.transform="rotateX(0) rotateY(0)";
+});
+});
+<section class="section">
+<h2>Impact</h2>
+<div class="stats">
+<div class="stat"><h3>500+</h3><p>Students Impacted</p></div>
+<div class="stat"><h3>72 FPS</h3><p>VR Optimization Target</p></div>
+<div class="stat"><h3>30%</h3><p>Performance Boost Achieved</p></div>
+</div>
+</section>
+</script>
 </body>
 </html>
