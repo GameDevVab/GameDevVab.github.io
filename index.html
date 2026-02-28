@@ -11,6 +11,7 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
+
 body{
 font-family:'Inter',sans-serif;
 background:#050509;
@@ -117,10 +118,61 @@ grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
 gap:30px;
 }
 
-.project-card img{
-width:100%;
+/* ===== YouTube Video Card ===== */
+
+.video-card{
+position:relative;
+overflow:hidden;
 border-radius:12px;
 margin-bottom:15px;
+}
+
+.video-card img{
+width:100%;
+display:block;
+transition:0.4s ease;
+}
+
+.video-card::after{
+content:"";
+position:absolute;
+bottom:0;
+left:0;
+width:100%;
+height:40%;
+background:linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
+
+.youtube-icon{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:65px;
+height:65px;
+background:#ff0000;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:0.3s ease;
+box-shadow:0 0 25px rgba(255,0,0,0.5);
+}
+
+.youtube-icon svg{
+width:28px;
+height:28px;
+fill:white;
+margin-left:4px;
+}
+
+.video-card:hover img{
+transform:scale(1.05);
+}
+
+.video-card:hover .youtube-icon{
+transform:translate(-50%,-50%) scale(1.1);
+background:#ff1a1a;
 }
 
 .button{
@@ -207,24 +259,23 @@ Hands-on with Blender, Level Design, and scalable system architecture.
 <div class="grid">
 
 <div class="glass project-card">
-<img src="project1.jpg">
-<h3>VR Learning Universe</h3>
+
+<div class="video-card">
+<a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID" target="_blank">
+<img src="https://img.youtube.com/vi/YOUR_VIDEO_ID/maxresdefault.jpg" alt="Project Demo">
+<div class="youtube-icon">
+<svg viewBox="0 0 24 24">
+<path d="M8 5v14l11-7z"/>
+</svg>
+</div>
+</a>
+</div>
+
+<h3>VR Learning Universe (2026)</h3>
 <p>Immersive educational VR modules with optimized interaction systems.</p>
+
 <a href="https://github.com/yourusername/project1" target="_blank" class="button">View Code</a>
-</div>
 
-<div class="glass project-card">
-<img src="project2.jpg">
-<h3>MR Simulation Lab</h3>
-<p>Real-time mixed reality industrial training simulation.</p>
-<a href="https://github.com/yourusername/project2" target="_blank" class="button">View Code</a>
-</div>
-
-<div class="glass project-card">
-<img src="project3.jpg">
-<h3>Interactive Projector Experience</h3>
-<p>Large scale projection-based interactive learning system.</p>
-<a href="https://github.com/yourusername/project3" target="_blank" class="button">View Code</a>
 </div>
 
 </div>
