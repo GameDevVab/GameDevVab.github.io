@@ -11,7 +11,6 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-
 body{
 font-family:'Inter',sans-serif;
 background:#000;
@@ -20,78 +19,7 @@ overflow-x:hidden;
 cursor:none;
 }
 
-  /* ===== XR PLAY BUTTON ===== */
-
-.xr-play{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-width:90px;
-height:90px;
-display:flex;
-align-items:center;
-justify-content:center;
-pointer-events:none;
-}
-
-/* Rotating Neon Ring */
-.ring{
-position:absolute;
-width:100%;
-height:100%;
-border-radius:50%;
-border:2px solid rgba(255,0,0,0.4);
-animation:rotateRing 6s linear infinite;
-box-shadow:0 0 25px rgba(255,0,0,0.6);
-}
-
-/* Core Button */
-.core{
-width:60px;
-height:60px;
-background:#ff0000;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-box-shadow:0 0 25px rgba(255,0,0,0.9);
-animation:pulse 2s infinite;
-transition:0.3s ease;
-}
-
-.core svg{
-width:24px;
-height:24px;
-fill:white;
-margin-left:3px;
-}
-
-/* Hover Effects */
-.video-item:hover .core{
-transform:scale(1.15);
-background:#ff1a1a;
-box-shadow:0 0 40px rgba(255,0,0,1);
-}
-
-.video-item:hover .ring{
-border-color:#ff0000;
-box-shadow:0 0 35px rgba(255,0,0,1);
-}
-
-/* Animations */
-@keyframes pulse{
-0%{box-shadow:0 0 15px rgba(255,0,0,0.7);}
-50%{box-shadow:0 0 35px rgba(255,0,0,1);}
-100%{box-shadow:0 0 15px rgba(255,0,0,0.7);}
-}
-
-@keyframes rotateRing{
-from{transform:rotate(0deg);}
-to{transform:rotate(360deg);}
-}
-
-/* ===== SPACE BACKGROUND ===== */
+/* ===== SPACE CANVAS ===== */
 #space{
 position:fixed;
 top:0;
@@ -99,7 +27,6 @@ left:0;
 width:100%;
 height:100%;
 z-index:-1;
-background:radial-gradient(circle at center, #0a0a1a 0%, #000 70%);
 }
 
 /* Cursor */
@@ -114,22 +41,7 @@ transition:0.1s ease;
 z-index:9999;
 }
 
-/* Loader */
-.loader{
-position:fixed;
-width:100%;
-height:100vh;
-background:#000;
-display:flex;
-align-items:center;
-justify-content:center;
-z-index:2000;
-font-size:2rem;
-letter-spacing:3px;
-animation:fadeOut 2s 2s forwards;
-}
-@keyframes fadeOut{to{opacity:0;visibility:hidden;}}
-
+/* Navigation */
 nav{
 position:fixed;
 width:100%;
@@ -140,7 +52,6 @@ background:rgba(0,0,0,0.6);
 backdrop-filter:blur(10px);
 z-index:1000;
 }
-
 nav a{
 color:#fff;
 text-decoration:none;
@@ -165,6 +76,7 @@ background:linear-gradient(90deg,#00f0ff,#ff00c8);
 -webkit-text-fill-color:transparent;
 }
 
+/* Sections */
 .section{padding:120px 8%;}
 .section h2{
 font-size:2.5rem;
@@ -183,7 +95,7 @@ transition:0.4s ease;
 }
 .glass:hover{
 transform:translateY(-10px);
-box-shadow:0 0 40px rgba(0,240,255,0.4);
+box-shadow:0 0 40px rgba(0,240,255,0.5);
 }
 
 .grid{
@@ -212,7 +124,6 @@ position:relative;
 border-radius:18px;
 overflow:hidden;
 cursor:pointer;
-transition:0.4s ease;
 }
 
 .video-item img{
@@ -221,35 +132,66 @@ display:block;
 border-radius:18px;
 transition:0.5s ease;
 }
-
 .video-item:hover img{
 transform:scale(1.08);
-filter:brightness(1.1);
+filter:brightness(1.2);
 }
 
-.play-icon{
+/* XR PLAY BUTTON */
+.xr-play{
 position:absolute;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%);
-width:55px;
-height:55px;
+width:90px;
+height:90px;
+display:flex;
+align-items:center;
+justify-content:center;
+pointer-events:none;
+}
+
+.ring{
+position:absolute;
+width:100%;
+height:100%;
+border-radius:50%;
+border:2px solid rgba(255,0,0,0.4);
+animation:rotateRing 6s linear infinite;
+box-shadow:0 0 25px rgba(255,0,0,0.6);
+}
+
+.core{
+width:60px;
+height:60px;
 background:#ff0000;
 border-radius:50%;
 display:flex;
 align-items:center;
 justify-content:center;
-box-shadow:0 0 25px rgba(255,0,0,0.7);
-transition:0.3s;
+animation:pulse 2s infinite;
 }
-.play-icon svg{
-width:22px;
-height:22px;
+
+.core svg{
+width:24px;height:24px;
 fill:white;
 margin-left:3px;
 }
-.video-item:hover .play-icon{
-transform:translate(-50%,-50%) scale(1.15);
+
+.video-item:hover .core{
+transform:scale(1.2);
+box-shadow:0 0 35px rgba(255,0,0,1);
+}
+
+@keyframes pulse{
+0%{box-shadow:0 0 15px rgba(255,0,0,0.6);}
+50%{box-shadow:0 0 40px rgba(255,0,0,1);}
+100%{box-shadow:0 0 15px rgba(255,0,0,0.6);}
+}
+
+@keyframes rotateRing{
+from{transform:rotate(0deg);}
+to{transform:rotate(360deg);}
 }
 
 .arrow{
@@ -264,26 +206,9 @@ align-items:center;
 justify-content:center;
 color:#00f0ff;
 cursor:pointer;
-transition:0.3s;
-}
-.arrow:hover{
-background:#00f0ff;
-color:#000;
 }
 .left{left:-25px;}
 .right{right:-25px;}
-
-.stats{
-display:flex;
-justify-content:space-around;
-flex-wrap:wrap;
-gap:20px;
-text-align:center;
-}
-.stat h3{
-font-size:3rem;
-color:#00f0ff;
-}
 
 .button{
 display:inline-block;
@@ -311,7 +236,6 @@ color:#555;
 <body>
 
 <canvas id="space"></canvas>
-<div class="loader">INITIALIZING XR SYSTEM...</div>
 <div class="cursor"></div>
 
 <nav>
@@ -334,8 +258,6 @@ color:#555;
 <div class="glass">
 XR Developer with 2+ years of experience building immersive VR Educational Content,
 Mixed Reality Simulations, and Projector-based Interactive Systems.
-Experienced Team Lead with strong debugging mindset and passion for coding challenges.
-Hands-on with Blender, Level Design, and scalable system architecture.
 </div>
 </section>
 
@@ -352,7 +274,7 @@ Hands-on with Blender, Level Design, and scalable system architecture.
 </section>
 
 <section id="projects" class="section">
-<h2>XR Demo Reels</h2>
+<h2>XR Demo Reel</h2>
 
 <div class="slider-wrapper">
 <div class="arrow left" onclick="scrollSlider(-400)">&#10094;</div>
@@ -362,31 +284,22 @@ Hands-on with Blender, Level Design, and scalable system architecture.
 
 <a href="https://www.youtube.com/watch?v=pUBeJQDm9Jo" target="_blank" class="video-item">
 <img src="https://img.youtube.com/vi/pUBeJQDm9Jo/maxresdefault.jpg">
-<div class="play-icon">
+<div class="xr-play">
+<div class="ring"></div>
+<div class="core">
 <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+</div>
 </div>
 </a>
 
 </div>
-</div>
-</section>
-
-<section class="section">
-<h2>Experience Stats</h2>
-<div class="stats">
-<div class="stat"><h3>2+</h3><p>Years XR</p></div>
-<div class="stat"><h3>15+</h3><p>XR Modules</p></div>
-<div class="stat"><h3>5+</h3><p>Team Projects</p></div>
 </div>
 </section>
 
 <section id="contact" class="section">
 <h2>Contact</h2>
 <div class="glass">
-Email: 
-<a href="mailto:vaibhavsharmadev31@gmail.com" class="button">
-vaibhavsharmadev31@gmail.com
-</a>
+<a href="mailto:vaibhavsharmadev31@gmail.com" class="button">Email Me</a>
 <a href="https://github.com/GameDevVab" target="_blank" class="button">GitHub</a>
 <a href="https://www.linkedin.com/in/vaibhav-sharma-a597b5267" target="_blank" class="button">LinkedIn</a>
 </div>
@@ -410,12 +323,6 @@ loop:true
 ScrollReveal().reveal('.glass',{interval:200});
 ScrollReveal().reveal('.video-item',{interval:150});
 
-const cursor=document.querySelector(".cursor");
-document.addEventListener("mousemove",(e)=>{
-cursor.style.left=e.clientX+"px";
-cursor.style.top=e.clientY+"px";
-});
-
 function scrollSlider(value){
 document.getElementById('videoSlider').scrollBy({
 left:value,
@@ -423,37 +330,77 @@ behavior:'smooth'
 });
 }
 
-/* SPACE ANIMATION */
-const canvas = document.getElementById("space");
-const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+/* ===== CINEMATIC SPACE BACKGROUND ===== */
+const canvas=document.getElementById("space");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
 
 let stars=[];
-for(let i=0;i<250;i++){
+let shootingStars=[];
+let mouseX=0,mouseY=0;
+
+for(let i=0;i<300;i++){
 stars.push({
 x:Math.random()*canvas.width,
 y:Math.random()*canvas.height,
 radius:Math.random()*1.5,
-speed:Math.random()*0.5
+opacity:Math.random(),
+speed:Math.random()*0.2
 });
 }
 
+function createShootingStar(){
+shootingStars.push({
+x:Math.random()*canvas.width,
+y:0,
+length:Math.random()*80+50,
+speed:Math.random()*10+6
+});
+}
+
+setInterval(createShootingStar,4000);
+
+window.addEventListener("mousemove",(e)=>{
+mouseX=e.clientX;
+mouseY=e.clientY;
+});
+
 function animate(){
 ctx.clearRect(0,0,canvas.width,canvas.height);
-ctx.fillStyle="white";
+
+/* Stars */
 stars.forEach(star=>{
 ctx.beginPath();
-ctx.arc(star.x,star.y,star.radius,0,Math.PI*2);
+ctx.globalAlpha=star.opacity;
+ctx.fillStyle="white";
+ctx.arc(star.x + (mouseX-canvas.width/2)*0.0005,
+        star.y + (mouseY-canvas.height/2)*0.0005,
+        star.radius,0,Math.PI*2);
 ctx.fill();
-star.y+=star.speed;
-if(star.y>canvas.height){
-star.y=0;
-star.x=Math.random()*canvas.width;
+star.opacity+= (Math.random()-0.5)*0.05;
+if(star.opacity<0.1)star.opacity=0.1;
+if(star.opacity>1)star.opacity=1;
+});
+
+/* Shooting stars */
+shootingStars.forEach((s,index)=>{
+ctx.beginPath();
+ctx.moveTo(s.x,s.y);
+ctx.lineTo(s.x+s.length,s.y-s.length);
+ctx.strokeStyle="white";
+ctx.lineWidth=2;
+ctx.stroke();
+s.x+=s.speed;
+s.y+=s.speed;
+if(s.y>canvas.height){
+shootingStars.splice(index,1);
 }
 });
+
 requestAnimationFrame(animate);
 }
+
 animate();
 
 window.addEventListener("resize",()=>{
