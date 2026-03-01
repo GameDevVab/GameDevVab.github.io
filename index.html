@@ -18,6 +18,36 @@ color:#fff;
 overflow-x:hidden;
 cursor:none;
 }
+  /* ===== EXPERTISE SMOOTH PANEL ===== */
+
+.expertise-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+margin-top:40px;
+}
+
+.expertise-card{
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.08);
+backdrop-filter:blur(15px);
+border-radius:20px;
+padding:30px;
+text-align:center;
+font-size:1.05rem;
+font-weight:500;
+transition:all 0.4s ease;
+cursor:default;
+position:relative;
+overflow:hidden;
+}
+
+/* Smooth Hover Effect */
+.expertise-card:hover{
+transform:translateY(-8px);
+box-shadow:0 0 35px rgba(0,240,255,0.4);
+border:1px solid rgba(0,240,255,0.5);
+}
 
 /* ===== SPACE CANVAS ===== */
 #space{
@@ -267,67 +297,27 @@ color:#555;
 <h2>About</h2>
 
 <div class="glass">
-<p style="line-height:1.8; font-size:1.05rem;">
+<p style="font-size:1.1rem; line-height:1.8; text-align:center;">
 
-I build immersive XR experiences using <strong>Unity</strong> that turn complex ideas into intuitive, interactive simulations.
-
-<br><br>
-
-With <strong>2+ years of hands-on experience in Unity and C#</strong>, I specialize in:
-
-<br><br>
-
-• XR Interaction Toolkit systems  
-• Real-time 3D simulations  
-• Physics-based interaction design  
-• Quest performance optimization (72+ FPS)  
-• Modular architecture & clean code structure  
-
-<br><br>
-
-My work focuses on creating VR learning modules, interactive simulations, and immersive systems that maintain high performance while delivering meaningful user experiences.
-
-<br><br>
-
-I’m particularly interested in:
-
-<br><br>
-
-– VR for Education  
-– Simulation-based Training  
-– Serious Games  
-– Real-time Interactive Systems  
-
-<br><br>
-
-Currently open to collaborating on XR, simulation, and immersive product development projects.
+I build immersive XR experiences using Unity, transforming complex concepts into intuitive, high-performance interactive simulations.  
+With 2+ years of hands-on experience in VR, AR, and MR development, I specialize in scalable architecture, real-time 3D systems, and performance-optimized solutions for Meta Quest and beyond.
 
 </p>
 </div>
 </section>
 <section id="expertise" class="section">
 <h2>Expertise</h2>
-<div class="grid">
 
-<div class="glass">Virtual Reality (VR) Development</div>
-<div class="glass">Augmented Reality (AR) Systems</div>
-<div class="glass">Mixed Reality (MR) Experiences</div>
+<div class="expertise-grid">
 
-<div class="glass">XR Interaction Toolkit</div>
-<div class="glass">Meta Quest Optimization (72+ FPS)</div>
-<div class="glass">Physics-Based Interaction Design</div>
-
-<div class="glass">Unity (C# Advanced)</div>
-<div class="glass">Real-Time 3D Simulations</div>
-<div class="glass">Modular Architecture & Clean Code</div>
-
-<div class="glass">REST API Integration</div>
-<div class="glass">Firebase (Auth, Firestore, Realtime DB)</div>
-<div class="glass">Cloud Data Sync & Leaderboards</div>
-
-<div class="glass">Multiplayer Systems (Basic Networking)</div>
-<div class="glass">Performance Profiling & Debugging</div>
-<div class="glass">Blender & Level Design</div>
+<div class="expertise-card">Virtual Reality (VR) Development</div>
+<div class="expertise-card">Augmented & Mixed Reality (AR/MR)</div>
+<div class="expertise-card">XR Interaction Toolkit Systems</div>
+<div class="expertise-card">Real-Time 3D Simulations</div>
+<div class="expertise-card">Unity (Advanced C# Architecture)</div>
+<div class="expertise-card">Quest Performance Optimization (72+ FPS)</div>
+<div class="expertise-card">REST API & Firebase Integration</div>
+<div class="expertise-card">Leaderboards & Cloud Data Systems</div>
 
 </div>
 </section>
